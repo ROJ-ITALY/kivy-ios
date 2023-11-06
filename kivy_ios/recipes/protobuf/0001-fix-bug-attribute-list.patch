@@ -1,0 +1,22 @@
+From 9cc43d6b86a2fc1ef424357f0501e907ebce4bcf Mon Sep 17 00:00:00 2001
+From: Stefano Gurrieri <stefano.gurrieri@roj.com>
+Date: Tue, 26 Sep 2023 08:14:48 +0200
+Subject: [PATCH] fix bug attribute list
+
+
+diff --git a/google/protobuf/internal/containers.py b/google/protobuf/internal/containers.py
+index 9279349..0331068 100644
+--- a/google/protobuf/internal/containers.py
++++ b/google/protobuf/internal/containers.py
+@@ -291,7 +291,7 @@ class RepeatedScalarFieldContainer(BaseContainer):
+     """Appends the contents of another repeated field of the same type to this
+     one. We do not check the types of the individual fields.
+     """
+-    self._values.extend(other._values)
++    self._values.extend(other)
+     self._message_listener.Modified()
+ 
+   def remove(self, elem):
+-- 
+2.17.1
+
