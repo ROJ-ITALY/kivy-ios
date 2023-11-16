@@ -1,0 +1,37 @@
+From d853dbcba9f536ef416852776212b3bdc54afc40 Mon Sep 17 00:00:00 2001
+From: Paola Martiner Giore <paola.martiner@roj.com>
+Date: Mon, 13 Nov 2023 15:26:30 +0100
+Subject: [PATCH] - AKNavigationrail: add item_height superior padding
+
+
+diff --git a/kivymd_extensions/akivymd/uix/navigationrail.py b/kivymd_extensions/akivymd/uix/navigationrail.py
+index e8c26f7..e99e7f2 100644
+--- a/kivymd_extensions/akivymd/uix/navigationrail.py
++++ b/kivymd_extensions/akivymd/uix/navigationrail.py
+@@ -44,6 +44,7 @@ Builder.load_string(
+ 
+ 
+ <AKNavigationrail>
++    padding: 0, root.item_height, 0, 0
+ 
+     BoxLayout:
+         orientation: "vertical"
+@@ -91,9 +92,13 @@ Builder.load_string(
+             Ellipse:
+                 size: root._item_radius * 2, root._item_radius * 2
+                 pos: self.width - root._item_radius * 2,  root._ghost_pos_y - root._item_radius * 2
+-            Ellipse:
+-                size: root._item_radius * 2, root._item_radius * 2
++            # Ellipse:
++            #     size: root._item_radius * 2, root._item_radius * 2
++            #     pos: self.width - root._item_radius * 2, root._ghost_pos_y + root.item_height
++            RoundedRectangle:
++                size: root._item_radius * 2, self.height
+                 pos: self.width - root._item_radius * 2, root._ghost_pos_y + root.item_height
++                radius: [0, 0, root._item_radius, 0]
+ 
+     BoxLayout:
+         id: content
+-- 
+2.25.1
+
