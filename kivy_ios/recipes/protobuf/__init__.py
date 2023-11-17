@@ -8,7 +8,7 @@ import os
 class ProtobufRecipe(PythonRecipe):
     version = "3.18.3"
     url = "https://pypi.org/packages/source/p/protobuf/protobuf-{version}.tar.gz"
-    depends = ["setuptools"]
+    depends = ["python"]
 
     def prebuild_arch(self, arch):
         if self.has_marker("patched"):

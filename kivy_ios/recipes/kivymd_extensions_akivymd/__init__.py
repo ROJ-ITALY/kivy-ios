@@ -8,7 +8,7 @@ import os
 class AkivymdRecipe(PythonRecipe):
     version = "1.2.7"
     url = "https://pypi.org/packages/source/k/kivymd-extensions.akivymd/kivymd_extensions.akivymd-{version}.tar.gz"
-    depends = ["setuptools"]
+    depends = ["python"]
 
     def prebuild_arch(self, arch):
         if self.has_marker("patched"):
