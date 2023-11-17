@@ -8,7 +8,7 @@ import os
 class ProtobufRecipe(PythonRecipe):
     version = "3.18.3"
     url = "https://pypi.org/packages/source/p/protobuf/protobuf-{version}.tar.gz"
-    depends = ["python"]
+    depends = ["setuptools"]
 
     def prebuild_arch(self, arch):
         if self.has_marker("patched"):
@@ -22,11 +22,13 @@ class ProtobufRecipe(PythonRecipe):
         print("SGU build_dir: {}".format(build_dir))
         os.chdir(build_dir)
         hostpython = sh.Command(self.ctx.hostpython)
+		print("SGU hostpython: {}".format(hostpython))
         build_env = arch.get_env()
         dest_dir = join(self.ctx.dist_dir, "root", "python3")
         print("SGU dest_dir: {}".format(dest_dir))
         build_env['PYTHONPATH'] = self.ctx.site_packages_dir
         print("SGU build_env: {}".format(build_env))
+		print("SGU site_packages_dir: {}".format(self.ctx.site_packages_dir))
 
         shprint(hostpython, "setup.py", "build", _env=build_env)
         shprint(hostpython, "setup.py", "install", "--prefix", dest_dir, _env=build_env)
